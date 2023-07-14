@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plants</title>
+  <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+  <h1>Plant Recommendation</h1>
+  
+  <form id="plantForm">
+    <label>Where will you place your plant?</label>
+    <input type="radio" name="placement" value="indirect-light"> Inside with some indirect light<br>
+    <input type="radio" name="placement" value="lots-of-indirect-light"> Inside with a lot of indirect light<br>
+    <input type="radio" name="placement" value="outside"> Outside<br>
+    
+    <label>Will it receive direct sunlight?</label>
+    <input type="radio" name="sunlight" value="yes"> Yes<br>
+    <input type="radio" name="sunlight" value="no"> No<br>
+    
+    <label>Do you have pets (cats or dogs)?</label>
+    <input type="radio" name="pets" value="yes"> Yes<br>
+    <input type="radio" name="pets" value="no"> No<br>
+    
+    <label>Do you tend to overwater or underwater?</label>
+    <input type="radio" name="watering" value="overwater"> Overwater<br>
+    <input type="radio" name="watering" value="underwater"> Underwater<br>
+    <input type="radio" name="watering" value="neither"> Neither / I don't know<br>
+    
+    <label>How do you define your style?</label>
+    <input type="radio" name="style" value="minimalism"> I like minimalism and material colors<br>
+    <input type="radio" name="style" value="simple-decoration"> I like some decoration and simple colors<br>
+    <input type="radio" name="style" value="bright-decoration"> I like a lot of decoration and bright colors<br>
+    
+    <label>Do you want to add any extra elements to your plant? (optional)</label>
+    <input type="checkbox" name="extras" value="moss-pole"> Moss pole<br>
+    <input type="checkbox" name="extras" value="pebbles"> Pebbles<br>
+    <input type="checkbox" name="extras" value="smaller-plants"> Smaller plants<br>
+    
+    <button type="submit">Get your plant!</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </form>
+  
+  <div id="recommendation" style="display: none;">
+    <h2>Plant Recommendation:</h2>
+    <p id="plantResult"></p>
+  </div>
+
+  <script type='module' src='./main.js'></script>
+</body>
+</html>
