@@ -1,5 +1,3 @@
-// Objeto
-
 class PlantBuilder {
   constructor() {
     this.plant = {};
@@ -10,18 +8,28 @@ class PlantBuilder {
     return this;
   }
 
-  withToxicity(toxicity) {
-    this.plant.toxicity = toxicity;
+  withSoilType(soilType) {
+    this.plant.soilType = soilType;
     return this;
   }
 
-  withSubstitute(substitute) {
-    this.plant.substitute = substitute;
+  withPotMaterial(potMaterial) {
+    this.plant.potMaterial = potMaterial;
     return this;
   }
 
-  withOverwateringSubstitute(overwateringSubstitute) {
-    this.plant.overwateringSubstitute = overwateringSubstitute;
+  withPotStyle(potStyle) {
+    this.plant.potStyle = potStyle;
+    return this;
+  }
+
+  withPotColor(potColor) {
+    this.plant.potColor = potColor;
+    return this;
+  }
+
+  withExtras(extras) {
+    this.plant.extras = extras;
     return this;
   }
 
@@ -30,4 +38,5 @@ class PlantBuilder {
   }
 }
 
-export default { PlantBuilder }
+export default PlantBuilder;
+

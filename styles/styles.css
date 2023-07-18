@@ -1,4 +1,41 @@
 label {
   display: block;
-  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+button {
+  display: block;
+  padding: 10px 20px;
+  border: none;
+  background-color: #86d254;
+  cursor: pointer;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+}
+
+#clearButton {
+  margin-left: 10px;
+}
+
+img {
+  height: 300px;
+  width: 300px;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
