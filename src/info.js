@@ -1,7 +1,28 @@
+// info.js
 import PlantBuilder from './config.js';
 import { getImagePath, getPlantImageName } from './form.js';
 
-const plantBuilder = new PlantBuilder();
+function determinePlantName(placement, sunlight, pets, watering) {
+  if (placement === 'indirect-light' || placement === 'lots-of-indirect-light') {
+    if (sunlight === 'yes') {
+      return 'Composted Soil';
+    } else {
+      return 'Fertilized Soil';
+    }
+  } else if (placement === 'outside') {
+    return 'Fertilized Soil';
+  }
+
+  if (pets === 'yes') {
+    return 'Non-Toxic Plant';
+  }
+
+  if (watering === 'overwater') {
+    return 'Substitute for Peace Lily';
+  }
+
+  return 'Non-Toxic Plant';
+}
 
 function info() {
   document.addEventListener('DOMContentLoaded', () => {
@@ -26,44 +47,14 @@ function info() {
         return;
       }
 
-      // Respuestas del formulario
-      if (placement === 'indirect-light') {
-        if (sunlight === 'yes') {
-          plantBuilder.withName('Composted Soil');
-        } else {
-          plantBuilder.withName('Fertilized Soil');
-        }
-      } else if (placement === 'lots-of-indirect-light') {
-        if (sunlight === 'yes') {
-          plantBuilder.withName('Composted Soil');
-        } else {
-          plantBuilder.withName('Fertilized Soil');
-        }
-      } else if (placement === 'outside') {
-        plantBuilder.withName('Fertilized Soil');
-      }
+      const plantName = determinePlantName(placement, sunlight, pets, watering);
 
-      if (pets === 'yes') {
-        plantBuilder.withName('Non-Toxic Plant');
-      } else {
-        if (plantBuilder.name === 'Low Light Plant') {
-          if (watering === 'overwater') {
-            plantBuilder.withName('Substitute for Peace Lily');
-          } else {
-            plantBuilder.withName('Non-Toxic Plant');
-          }
-        } else if (plantBuilder.name === 'Medium Light Plant') {
-          if (watering === 'overwater') {
-            plantBuilder.withName('Substitute for Peace Lily');
-          } else {
-            plantBuilder.withName('Non-Toxic Plant');
-          }
-        } else if (plantBuilder.name === 'Outdoor Plant') {
-          plantBuilder.withName('Toxic Plant');
-        }
-      }
+      // Create a new instance of the PlantBuilder and set the name
+      const plantBuilder = new PlantBuilder().withName(plantName);
 
+      // Continue setting other properties
       plantBuilder.withSoilType(sunlight === 'yes' ? 'Composted Soil' : 'Fertilized Soil');
+
       if (pets === 'yes') {
         plantBuilder.withPotMaterial('Ceramic pot');
       } else {
@@ -85,7 +76,8 @@ function info() {
 
       plantBuilder.withExtras(extras);
       const plant = plantBuilder.build();
-      // Imagenes en HTML
+
+      // Rest of the code remains the same...
       recommendationDiv.style.display = 'block';
       plantResultDiv.innerHTML = `
         <h2>Recommendation:</h2>
@@ -115,4 +107,5 @@ function info() {
   });
 }
 
-export default info 
+export default info;
+
