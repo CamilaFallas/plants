@@ -1,13 +1,23 @@
 function getImagePath(option, color = '') {
   switch (option) {
-    case 'Ceramic pot':
-      return color.includes('decorated') ? '../styles/images/simple-ceramic-pot-decorated.png' : '../styles/images/simple-ceramic-pot.png';
-    case 'Clay pot':
-      return color.includes('decorated') ? '../styles/images/simple-clay-pot-decorated.png' : '../styles/images/simple-clay-pot.png';
+    case 'Clay Pot':
+      return '../styles/images/simple-clay-pot.png';
+    case 'Ceramic Pot':
+      return '../styles/images/simple-ceramic-pot.png';
+    case 'Clay Pot Decorated':
+      return '../styles/images/simple-clay-pot-decorated.png';
+    case 'Ceramic Pot Decorated':
+      return '../styles/images/simple-ceramic-pot-decorated.png';
+    case 'Painted Clay Pot Decorated':
+      return '../styles/images/painted-clay-pot-decorated.png';
+    case 'Painted Ceramic Pot Decorated':
+      return '../styles/images/painted-ceramic-pot-decorated.png';
     case 'Pebbles':
       return '../styles/images/pebbles.png';
-    case 'Moss pole':
+    case 'Moss Pole':
       return '../styles/images/moss-pole.png';
+    case 'Mini Plants':
+      return '../styles/images/mini-plants.png';
     case 'Fertilized Soil':
       return '../styles/images/soil-fertilized.png';
     case 'Composted Soil':
@@ -17,19 +27,25 @@ function getImagePath(option, color = '') {
 
 function getPlantImageName(plantName) {
   switch (plantName) {
-    case 'Low Light Plant':
-      return 'sansevieria';
-    case 'Medium Light Plant':
-      return 'aglaonema';
-    case 'Outdoor Plant':
-      return 'aloe';
-    case 'Fertilized Soil':
-      return 'cactus';
-    case 'Composted Soil':
+    case 'Fern':
+      return 'fern';
+    case 'Monstera':
       return 'monstera';
+    case 'Aglaonema':
+      return 'aglaonema';
+    case 'Cactus':
+      return 'cactus';
+    case 'Sansevieria':
+      return 'sansevieria';
+    case 'Aloe':
+      return 'aloe';
     case 'Substitute for Peace Lily':
       return 'peace-lily';
+    default:
+      return 'default';
   }
 }
+
+
 
 export { getImagePath, getPlantImageName };

@@ -1,27 +1,46 @@
-// info.js
 import PlantBuilder from './config.js';
 import { getImagePath, getPlantImageName } from './form.js';
 
 function determinePlantName(placement, sunlight, pets, watering) {
-  if (placement === 'indirect-light' || placement === 'lots-of-indirect-light') {
-    if (sunlight === 'yes') {
-      return 'Composted Soil';
+  if (placement === 'low-light-plant') {
+    if (pets === 'yes') {
+      return 'Fern';
     } else {
-      return 'Fertilized Soil';
+      return 'Sansevieria';
     }
-  } else if (placement === 'outside') {
-    return 'Fertilized Soil';
+  } else if (placement === 'medium-light-plant') {
+    if (pets === 'yes') {
+      return 'Monstera';
+    } else {
+      return 'Aglaonema';
+    }
+  } else if (placement === 'outdoor-plant') {
+    if (pets === 'yes') {
+      return 'Cactus';
+    } else {
+      return 'Aloe';
+    }
   }
+}
 
-  if (pets === 'yes') {
-    return 'Non-Toxic Plant';
+function determinePot(style, watering) {
+  if (style === 'simple-pot') {
+    return watering === 'overwater' ? 'Clay Pot' : 'Ceramic Pot';
+  } else if (style === 'simple-pot-decorated') {
+    return watering === 'overwater' ? 'Clay Pot Decorated' : 'Ceramic Pot Decorated';
+  } else if (style === 'painted-pot-decorated') {
+    return watering === 'overwater' ? 'Painted Clay Pot Decorated' : 'Painted Ceramic Pot Decorated';
   }
+}
 
-  if (watering === 'overwater') {
-    return 'Substitute for Peace Lily';
+function extrasToString(extras) {
+  if (extras === 'moss-pole') {
+    return 'Moss Pole';
+  } else if (extras === 'pebbles') {
+    return 'Pebbles';
+  } else if (extras === 'mini-plants') {
+    return 'Mini Plants';
   }
-
-  return 'Non-Toxic Plant';
 }
 
 function info() {
@@ -40,7 +59,7 @@ function info() {
       const pets = formData.get('pets');
       const watering = formData.get('watering');
       const style = formData.get('style');
-      const extras = formData.getAll('extras');
+      const selectedExtras = formData.getAll('extras');
 
       if (!placement || !sunlight || !pets || !watering || !style) {
         alert('Please complete all required fields.');
@@ -48,55 +67,34 @@ function info() {
       }
 
       const plantName = determinePlantName(placement, sunlight, pets, watering);
-
-      // Create a new instance of the PlantBuilder and set the name
       const plantBuilder = new PlantBuilder().withName(plantName);
-
-      // Continue setting other properties
+      const potOption = determinePot(style, watering);
+      plantBuilder.withPotMaterial(potOption);
+      plantBuilder.withPotColor(style);
+      const potImagePath = getImagePath(potOption, style);
       plantBuilder.withSoilType(sunlight === 'yes' ? 'Composted Soil' : 'Fertilized Soil');
-
-      if (pets === 'yes') {
-        plantBuilder.withPotMaterial('Ceramic pot');
-      } else {
-        plantBuilder.withPotMaterial('Clay pot');
-        if (watering === 'overwater') {
-          plantBuilder.withPotStyle('Substitute the soil for the easy drainage soil');
-        } else {
-          plantBuilder.withPotStyle('Ceramic pot');
-        }
-      }
-
-      if (style === 'minimalism') {
-        plantBuilder.withPotColor('Simple pot');
-      } else if (style === 'simple-decoration') {
-        plantBuilder.withPotColor('Simple pot decorated');
-      } else if (style === 'bright-decoration') {
-        plantBuilder.withPotColor('Painted pot decorated');
-      }
-
-      plantBuilder.withExtras(extras);
+      plantBuilder.withExtras(selectedExtras);
+      const extrasList = selectedExtras.map(extra => extrasToString(extra)).filter(Boolean);
       const plant = plantBuilder.build();
 
-      // Rest of the code remains the same...
       recommendationDiv.style.display = 'block';
       plantResultDiv.innerHTML = `
-        <h2>Recommendation:</h2>
-        <div class="info-container">
-          <h3>${plant.name}</h3>
-          <div class="image-container">
-            <img src="${getImagePath(plant.potMaterial, plant.potColor)}" alt="Pot image">
-            ${extras.map(extra => `<img src="${getImagePath(extra)}" alt="${extra} image">`).join('')}
-            <img src="${getImagePath(plant.soilType)}" alt="Soil image">
-            <img src="../styles/images/plant-${getPlantImageName(plant.name)}.png" alt="Plant image">
+          <h2>Recommendation:</h2>
+          <div class="info-container">
+            <h3>${plant.name}</h3>
+            <div class="image-container">
+              <img src="${getImagePath(plant.potMaterial, plant.potColor)}" alt="Pot image">
+              ${extrasList.map(extra => `<img src="${getImagePath(extra)}" alt="${extra} image">`).join('')}
+              <img src="${getImagePath(plant.soilType)}" alt="Soil image">
+              <img src="../styles/images/plant-${getPlantImageName(plant.name)}.png" alt="Plant image">
+            </div>
+            <p>
+              Soil - ${plant.soilType}<br>
+              Pot - ${plant.potMaterial} ${plant.potStyle ? `- ${plant.potStyle}` : ''}<br>
+              Extras - ${extrasList.join(', ')}
+            </p>
           </div>
-          <p>
-            Soil - ${plant.soilType}<br>
-            Pot - ${plant.potMaterial} ${plant.potStyle ? `- ${plant.potStyle}` : ''}<br>
-            Color - ${plant.potColor}<br>
-            Extras - ${plant.extras.join(', ')}
-          </p>
-        </div>
-      `;
+        `;
     });
 
     clearButton.addEventListener('click', () => {
@@ -108,4 +106,3 @@ function info() {
 }
 
 export default info;
-

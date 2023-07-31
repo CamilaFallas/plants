@@ -10,9 +10,9 @@
   <h1>Find the perfect plant for you</h1>
   <form id="plantForm">
     <label>Where will you place your plant?</label>
-    <input type="radio" name="placement" value="indirect-light"> Inside with some indirect light
-    <input type="radio" name="placement" value="lots-of-indirect-light"> Inside with a lot of indirect light
-    <input type="radio" name="placement" value="outside"> Outside
+    <input type="radio" name="placement" value="low-light-plant"> Inside with some indirect light
+    <input type="radio" name="placement" value="medium-light-plant"> Inside with a lot of indirect light
+    <input type="radio" name="placement" value="outdoor-plant"> Outside
     <label>Will it receive direct sunlight?</label>
     <input type="radio" name="sunlight" value="yes"> Yes
     <input type="radio" name="sunlight" value="no"> No
@@ -24,13 +24,13 @@
     <input type="radio" name="watering" value="underwater"> Underwater
     <input type="radio" name="watering" value="neither"> Neither / I don't know
     <label>How do you define your style?</label>
-    <input type="radio" name="style" value="minimalism"> I like minimalism and material colors
-    <input type="radio" name="style" value="simple-decoration"> I like some decoration and simple colors
-    <input type="radio" name="style" value="bright-decoration"> I like a lot of decoration and bright colors
+    <input type="radio" name="style" value="simple-pot"> I like minimalism and material colors
+    <input type="radio" name="style" value="simple-pot-decorated"> I like some decoration and simple colors
+    <input type="radio" name="style" value="painted-pot-decorated"> I like a lot of decoration and bright colors
     <label>Do you want to add any extra elements to your plant? (optional)</label>
     <input type="checkbox" name="extras" value="moss-pole"> Moss pole
     <input type="checkbox" name="extras" value="pebbles"> Pebbles
-    <input type="checkbox" name="extras" value="smaller-plants"> Smaller plants
+    <input type="checkbox" name="extras" value="mini-plants"> Smaller plants
     <div class="buttons">
       <button type="submit">Get your plant!</button>
       <button id="clearButton" type="button">Clear</button>
@@ -40,6 +40,7 @@
       <div id="plantResult"></div>
     </div>
   </div>
+  <div>
   <script type='module' src='./src/main.js'></script>
 </body>
 </html>
