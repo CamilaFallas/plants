@@ -79,21 +79,33 @@ function info() {
 
       recommendationDiv.style.display = 'block';
       plantResultDiv.innerHTML = `
-          <h2>Recommendation:</h2>
-          <div class="info-container">
-            <h3>${plant.name}</h3>
-            <div class="image-container">
-              <img src="${getImagePath(plant.potMaterial, plant.potColor)}" alt="Pot image">
-              ${extrasList.map(extra => `<img src="${getImagePath(extra)}" alt="${extra} image">`).join('')}
-              <img src="${getImagePath(plant.soilType)}" alt="Soil image">
-              <img src="../styles/images/plant-${getPlantImageName(plant.name)}.png" alt="Plant image">
-            </div>
-            <p>
-              Soil - ${plant.soilType}<br>
-              Pot - ${plant.potMaterial} ${plant.potStyle ? `- ${plant.potStyle}` : ''}<br>
-              Extras - ${extrasList.join(', ')}
-            </p>
+      <div class="card">
+      <h2 class="card__title">The perfect plant for you is...</h2>
+      <p class="card__title">${plant.name}</p>
+      <div class="card__img">
+        <img class="card_img-position" src="${getImagePath(plant.potMaterial, plant.potColor)}" alt="Pot image">
+        ${extrasList.map(extra => `<img class="card_img-position" src="${getImagePath(extra)}" alt="${extra} image">`).join('')}
+        <img class="card_img-position" src="${getImagePath(plant.soilType)}" alt="Soil image">
+        <img class="card_img-position" src="../styles/images/plant-${getPlantImageName(plant.name)}.png" alt="Plant image">
+      </div>
+      <div class="card-info">
+        <div class="line">
+          <div>
+          <p class="card--font keys">Name</p>
+            <p class="card--font keys">Soil</p>
+            <p class="card--font keys">Pot</p>
+            <p class="card--font keys">Extras</p>
           </div>
+          <div>
+            <p class="card--font">${plant.name}</p>
+            <p class="card--font">${plant.soilType}</p>
+            <p class="card--font">${plant.potMaterial} ${plant.potStyle ? `- ${plant.potStyle}` : ''}</p>
+            <p class="card--font">${extrasList.join(', ')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="../customize.html">Customize</a>
         `;
     });
 
