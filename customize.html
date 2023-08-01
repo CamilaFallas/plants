@@ -1,71 +1,63 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Plant Pot Form</title>
-    <link rel="stylesheet" href="./styles/customize.css">
-</head>
-<body>
-  <h1>Plant Pot Form</h1>
-  <form>
-    <div>
-      <p>Choose your pot:</p>
-      <input type="radio" name="pot" value="Clay" id="pot-clay">
-      <label for="pot-clay">Clay</label><br>
-      <input type="radio" name="pot" value="Ceramic" id="pot-ceramic">
-      <label for="pot-ceramic">Ceramic</label><br>
+<h1 class="title-form">Plant Pot Form</h1>
+<form id="plantForm" class="form">
+  <div class="answer-group">
+    <p class="question-text">Choose your pot:</p>
+    <input type="radio" name="pot" value="Clay" id="pot-clay">
+    <label for="pot-clay" class="question-text">Clay</label>
+    <input type="radio" name="pot" value="Ceramic" id="pot-ceramic">
+    <label for="pot-ceramic" class="question-text">Ceramic</label>
+  </div>
+    <div class="answer-group">
+      <p>Pot decorations:</p>
+      <label class="switch question-text">
+        <input type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
     </div>
-      <div>
-        <p>Pot decorations:</p>
-        <label class="switch">
-          <input type="checkbox" checked>
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <div>
+    <div class="answer-group">
+      <div id="containerColors">
         <p>Pot color:</p>
-        <label class="color-option blue"><input type="radio" name="color" value="Blue"></label>
+        <!-- <label class="color-option blue"><input type="radio" name="color" value="Blue"></label>
         <label class="color-option pink"><input type="radio" name="color" value="Pink"></label>
         <label class="color-option green"><input type="radio" name="color" value="Green"></label>
-        <label class="color-option purple"><input type="radio" name="color" value="Purple"></label>
+        <label class="color-option purple"><input type="radio" name="color" value="Purple"></label> -->
       </div>
-      <div>
-          <p>Choose your plant:</p>
-          <select name="plant">
-            <option value="Aglaonema Silver Bay">Aglaonema Silver Bay</option>
-            <option value="Aloe Vera">Aloe Vera</option>
-            <option value="Boston Fern">Boston Fern</option>
-            <option value="Cactus">Cactus</option>
-            <option value="Monstera Deliciosa">Monstera Deliciosa</option>
-            <option value="Peace Lily">Peace Lily</option>
-            <option value="Sansevieria">Sansevieria</option>
-          </select>
-      </div>
-      <div>
-        <p>Choose your soil:</p>
-        <input type="radio" name="soil" value="Basic composted soil" id="soil-basic">
-        <label for="soil-basic">Basic composted soil</label><br>
-        <input type="radio" name="soil" value="Premium fertilized soil" id="soil-premium">
-        <label for="soil-premium">Premium fertilized soil</label><br>
-        <input type="radio" name="soil" value="Easy drainage soil" id="soil-drainage">
-        <label for="soil-drainage">Easy drainage soil</label><br>
-      </div>
-      <div>
-        <p>Choose your extras:</p>
-        <input type="checkbox" name="extras" value="Moss pole" id="extras-moss">
-        <label for="extras-moss">Moss pole</label><br>
-        <input type="checkbox" name="extras" value="Pebbles" id="extras-pebbles">
-        <label for="extras-pebbles">Pebbles</label><br>
-        <input type="checkbox" name="extras" value="Smaller plants" id="extras-plants">
-        <label for="extras-plants">Smaller plants</label><br>
-      </div>
-      <input type="submit" value="Submit">
-  </form>
-  <div>
-    <div id="recommendation" style="display: none;">
-      <div id="plantResult" class="card__container"></div>
     </div>
+    <div class="answer-group">
+        <p class="question-text">Choose your plant:</p>
+        <select name="plant">
+          <option value="Aglaonema Silver Bay">Aglaonema Silver Bay</option>
+          <option value="Aloe Vera">Aloe Vera</option>
+          <option value="Boston Fern">Boston Fern</option>
+          <option value="Cactus">Cactus</option>
+          <option value="Monstera Deliciosa">Monstera Deliciosa</option>
+          <option value="Peace Lily">Peace Lily</option>
+          <option value="Sansevieria">Sansevieria</option>
+        </select>
+    </div>
+    <div class="answer-group">
+      <p>Choose your soil:</p>
+      <input type="radio" name="soil" value="Basic composted soil" id="soil-basic">
+      <label for="soil-basic" class="question-text">Basic composted soil</label>
+      <input type="radio" name="soil" value="Premium fertilized soil" id="soil-premium">
+      <label for="soil-premium" class="question-text">Premium fertilized soil</label>
+      <input type="radio" name="soil" value="Easy drainage soil" id="soil-drainage">
+      <label for="soil-drainage">Easy drainage soil</label>
+    </div>
+    <div class="answer-group">
+      <p>Choose your extras:</p>
+      <input type="checkbox" name="extras" value="Moss pole" id="extras-moss">
+      <label for="extras-moss" class="question-text">Moss pole</label>
+      <input type="checkbox" name="extras" value="Pebbles" id="extras-pebbles">
+      <label for="extras-pebbles" class="question-text">Pebbles</label>
+      <input type="checkbox" name="extras" value="Smaller plants" id="extras-plants">
+      <label for="extras-plants" class="question-text">Smaller plants</label>
+    </div>
+  <button class=" btn btn-bg" type="submit" value="Submit">Submit</button>
+</form>
+</div>
+<div>
+  <div id="recommendation" style="display: none;">
+    <div id="plantResult" class="card__container"></div>
   </div>
 </div>
-<script src="./src/customize.js"></script>
-</body>
-</html>

@@ -1,4 +1,5 @@
-import PlantBuilder from './config.js';
+import PlantBuilder from '../patterns/builder.js';
+import { initColor } from './colors.js';
 import { getImagePath, getPlantImageName } from './form.js';
 
 function determinePlantName(placement, sunlight, pets, watering) {
@@ -79,8 +80,8 @@ function info() {
 
       recommendationDiv.style.display = 'block';
       plantResultDiv.innerHTML = `
-      <div class="card">
-      <h2 class="card__title">The perfect plant for you is...</h2>
+      <div id="card" class="card">
+      <h2 id="title" class="card__title">The perfect plant for you is...</h2>
       <p class="card__title">${plant.name}</p>
       <div class="card__img">
         <img class="card_img-position" src="${getImagePath(plant.potMaterial, plant.potColor)}" alt="Pot image">
@@ -105,14 +106,26 @@ function info() {
         </div>
       </div>
     </div>
-    <a href="../customize.html">Customize</a>
-        `;
-    });
+    <button class="btn btn-bg" id="customize-btn">Customize</button>
+    `;
+      clearButton.addEventListener('click', () => {
+        plantForm.reset();
+        recommendationDiv.style.display = 'none';
+        plantResultDiv.innerHTML = '';
+      });
+      const button = document.getElementById('customize-btn')
+      button.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const title = document.getElementById('title');
+        const container = document.getElementById('plant-form');
+        const getForm = await fetch('../../customize.html');
+        const newForm = await getForm.text();
+        container.innerHTML = newForm
+        title.innerHTML = 'Customize you plant';
+        button.innerHTML = 'Check store availability'
 
-    clearButton.addEventListener('click', () => {
-      plantForm.reset();
-      recommendationDiv.style.display = 'none';
-      plantResultDiv.innerHTML = '';
+        initColor();
+      })
     });
   });
 }

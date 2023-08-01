@@ -17,30 +17,9 @@ input[type="checkbox"] {
   margin-right: 5px;
 }
 
-/* button {
-  display: block;
-  padding: 10px 20px;
-  border: none;
-  background-color: #86d254;
-  cursor: pointer;
-}
-
-.buttons {
-  margin-top: 20px;
-  display: flex;
-} */
-
-/* #clearButton {
-  margin-left: 10px;
-} */
-
 img {
   height: 300px;
   width: 300px;
-}
-
-.image-container {
-  
 }
 
 .image-container img {
@@ -49,20 +28,13 @@ img {
   left: 0;
 }
 
-
-
-.plant{
+.plant {
   display: flex;
   justify-content: center;
-  /* gap: ; */
 }
 
 p {
   margin: 10px 0;
-}
-
-.form {
-  margin-left: 20px;
 }
 
 .title-form {
@@ -77,11 +49,8 @@ p {
 .question-text {
   font-size: 18px;
   font-weight: 500;
+  display: block;
 }
-
-/* .answer-group {
-  display: flex;
-} */
 
 .answer-group label {
   margin-bottom: 5px;
@@ -94,11 +63,6 @@ p {
   accent-color: #7a5cfa;
   display: inline;
 }
-
-/* input[type=radio] {
-  width: 8%;
-  height: 8%;
-} */
 
 .btn {
   margin-top: 20px;
@@ -115,7 +79,6 @@ p {
   background-color: #7a5cfa;
   color: white;
 }
-/* ///////////// */
 
 .card__container {
   width: 50%;

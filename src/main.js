@@ -1,2 +1,2 @@
-import info from './info.js'
+import info from './components/info.js'
 info();
