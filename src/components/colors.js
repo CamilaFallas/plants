@@ -1,10 +1,7 @@
-// Importación del Observer y otras dependencias
 import Observer from "../patterns/observer.js";
 import { state, colors } from "../patterns/config.js";
 
-// Crear una instancia del Observer
 const ObserverColor = new Observer();
-// Obtener los colores del estado actual
 const colorState = state[state.color];
 
 function renderColor() {

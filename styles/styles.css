@@ -12,6 +12,10 @@ label {
   margin-top: 15px;
 }
 
+.label-customize {
+  display: inline;
+}
+
 input[type="radio"],
 input[type="checkbox"] {
   margin-right: 5px;
@@ -50,6 +54,11 @@ p {
   font-size: 18px;
   font-weight: 500;
   display: block;
+}
+
+.question-text-customize {
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .answer-group label {
