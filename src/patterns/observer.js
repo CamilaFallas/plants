@@ -1,17 +1,20 @@
 class Observer {
   constructor() {
-    this.subscribers = [];
+    this.observers = [];
   }
 
   subscribe(fn) {
-    this.subscribers.push(fn);
+    this.observers.push(fn);
+  }
+
+  unsubscribe(fn) {
+    this.observers = this.observers.filter(obs => obs !== fn);
   }
 
   notify(data) {
-    this.subscribers.forEach((subscriber) => {
-      subscriber(data);
-    });
+    this.observers.forEach(observer => observer(data));
   }
 }
 
 export default Observer;
+

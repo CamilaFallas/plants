@@ -1,49 +1,59 @@
-<h1 class="title-form">Plant Pot Form</h1>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize your plant!</title>
+  <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body> -->
+  <h1 class="title-form">Plant Pot Form</h1>
 <form id="plantForm" class="form">
   <div class="answer-group">
     <p class="question-text-customize label">Choose your pot:</p>
-    <input type="radio" name="pot" value="Clay" id="pot-clay">
+    <input type="radio" name="pot" value="clay" id="pot-clay">
     <label for="pot-clay" class="question-text-customize label">Clay</label>
-    <input type="radio" name="pot" value="Ceramic" id="pot-ceramic">
+    <input type="radio" name="pot" value="ceramic" id="pot-ceramic">
     <label for="pot-ceramic" class="question-text-customize label">Ceramic</label>
   </div>
-    <div class="answer-group">
-      <p>Pot decorations:</p>
-      <label class="switch question-text-customize label">
-        <input type="checkbox" checked>
-        <span class="slider round"></span>
-      </label>
+  <div class="answer-group">
+    <p>Pot decorations:</p>
+    <label class="switch question-text-customize label">
+      <input type="checkbox" name="decoration" value="decorated">
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <div class="answer-group">
+    <div id="containerColors">
+      <p>Pot color:</p>
+      <label class="color-option blue"><input type="radio" name="color" value="blue">Blue</label>
+      <label class="color-option pink"><input type="radio" name="color" value="pink">Pink</label>
+      <label class="color-option green"><input type="radio" name="color" value="green">Green</label>
+      <label class="color-option purple"><input type="radio" name="color" value="purple">Purple</label>
+      <label class="color-option unpainted"><input type="radio" name="color" value="unpainted">Unpainted</label>
     </div>
+  </div>  
+  <div class="answer-group">
+    <p>Choose your soil:</p>
+    <input type="radio" name="soil" value="basic" id="soil-composted">
+    <label for="soil-basic" class="question-text-customize label">Basic composted soil</label>
+    <input type="radio" name="soil" value="premium" id="soil-fertilized">
+    <label for="soil-premium" class="question-text-customize label">Premium fertilized soil</label>
+    <input type="radio" name="soil" value="drainage" id="soil-drainage">
+    <label for="soil-drainage">Easy drainage soil</label>
+  </div>  
     <div class="answer-group">
-      <div id="containerColors">
-        <p>Pot color:</p>
-        <!-- <label class="color-option blue"><input type="radio" name="color" value="Blue"></label>
-        <label class="color-option pink"><input type="radio" name="color" value="Pink"></label>
-        <label class="color-option green"><input type="radio" name="color" value="Green"></label>
-        <label class="color-option purple"><input type="radio" name="color" value="Purple"></label> -->
-      </div>
-    </div>
-    <div class="answer-group">
-        <p class="question-text-customize label">Choose your plant:</p>
-        <select name="plant">
-          <option value="Aglaonema Silver Bay">Aglaonema Silver Bay</option>
-          <option value="Aloe Vera">Aloe Vera</option>
-          <option value="Boston Fern">Boston Fern</option>
-          <option value="Cactus">Cactus</option>
-          <option value="Monstera Deliciosa">Monstera Deliciosa</option>
-          <option value="Peace Lily">Peace Lily</option>
-          <option value="Sansevieria">Sansevieria</option>
-        </select>
-    </div>
-    <div class="answer-group">
-      <p>Choose your soil:</p>
-      <input type="radio" name="soil" value="Basic composted soil" id="soil-basic">
-      <label for="soil-basic" class="question-text-customize label">Basic composted soil</label>
-      <input type="radio" name="soil" value="Premium fertilized soil" id="soil-premium">
-      <label for="soil-premium" class="question-text-customize label">Premium fertilized soil</label>
-      <input type="radio" name="soil" value="Easy drainage soil" id="soil-drainage">
-      <label for="soil-drainage">Easy drainage soil</label>
-    </div>
+      <p class="question-text-customize label">Choose your plant:</p>
+      <select name="plant">
+        <option value="Aglaonema Silver Bay">Aglaonema Silver Bay</option>
+        <option value="Aloe Vera">Aloe Vera</option>
+        <option value="Boston Fern">Boston Fern</option>
+        <option value="Cactus">Cactus</option>
+        <option value="Monstera Deliciosa">Monstera Deliciosa</option>
+        <option value="Peace Lily">Peace Lily</option>
+        <option value="Sansevieria">Sansevieria</option>
+      </select>
+  </div>
     <div class="answer-group">
       <p>Choose your extras:</p>
       <input type="checkbox" name="extras" value="Moss pole" id="extras-moss">
@@ -55,9 +65,10 @@
     </div>
   <button class=" btn btn-bg" type="submit" value="Submit">Submit</button>
 </form>
-</div>
 <div>
   <div id="recommendation" style="display: none;">
     <div id="plantResult" class="card__container"></div>
   </div>
 </div>
+</body>
+</html> 
