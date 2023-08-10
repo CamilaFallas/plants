@@ -1,11 +1,20 @@
 import PlantBuilder from '../patterns/builder.js';
-import { plantCustomized, updateData } from './customize/potCustomize.js';
+// import { updatePotData, updateSoilData, updatedPlantData, updateExtrasData } from './customize/updateInfo.js';
+import { updateSoilData, updatePlantData, updateData } from './customize/updateInfo.js';
 import { getImagePath, getPlantImageName, determinePlantName, determinePot, extrasToString } from './getInfo.js';
 
 const plantForm = document.getElementById('plantForm');
 const recommendationDiv = document.getElementById('recommendation');
 const plantResultDiv = document.getElementById('plantResult');
 const clearButton = document.getElementById('clearButton');
+let plantData = {
+  name: '',
+  potMaterial: '',
+  potColor: '',
+  soilType: '',
+  potStyle: '',
+  extrasList: []
+};
 
 function info() {
   document.addEventListener('DOMContentLoaded', () => {
@@ -43,9 +52,9 @@ function info() {
       <p class="card__title">${plant.name}</p>
       <div class="card__img">
         <img class="card_img-position  potSrc" src="${getImagePath(plant.potMaterial, plant.potColor)}" alt="Pot image">
-        ${extrasList.map(extra => `<img class="card_img-position" src="${getImagePath(extra)}" alt="${extra} image">`).join('')}
+        ${extrasList.map(extra => `<img class="card_img-position extrasSrc" src="${getImagePath(extra)}" alt="${extra} image">`).join('')}
         <img class="card_img-position soilSrc" src="${getImagePath(plant.soilType)}" alt="Soil image">
-        <img class="card_img-position" src="../styles/images/plant-${getPlantImageName(plant.name)}.png" alt="Plant image">
+        <img class="card_img-position plantSrc" src="../styles/images/plant-${getPlantImageName(plant.name)}.png" alt="Plant image">
       </div>
       <div class="card-info">
         <div class="line">
@@ -56,16 +65,26 @@ function info() {
             <p class="card--font keys">Extras</p>
           </div>
           <div>
-            <p class="card--font">${plant.name}</p>
-            <p class="card--font">${plant.soilType}</p>
-            <p class="card--font">${plant.potMaterial} ${plant.potStyle ? `- ${plant.potStyle}` : ''}</p>
-            <p class="card--font">${extrasList.join(', ')}</p>
+            <p class="card--font newName">${plant.name}</p>
+            <p class="card--font soil newSoil">${plant.soilType}</p>
+            <p class="card--font" newPot>${plant.potMaterial} ${plant.potStyle ? `- ${plant.potStyle}` : ''}</p>
+            <p class="card--font newExtras">${extrasList.join(', ')}</p>
           </div>
         </div>
       </div>
     </div>
-    <buttom class="btn btn-bg" id="customize-btn">Customize</buttom>
+    <buttom class="btn btn-bg" class="btn btn-bg" id="customize-btn">Customize</buttom>
+    <a href="/store.html">gggggggggggggg</a>
     `;
+      plantData = {
+        name: plant.name,
+        potMaterial: plant.potMaterial,
+        potColor: '',
+        soilType: plant.soilType,
+        potStyle: plant.potStyle,
+        extrasList: extrasList
+      };
+      console.log(plantData)
       clearButton.addEventListener('click', () => {
         plantForm.reset();
         recommendationDiv.style.display = 'none';
@@ -74,7 +93,6 @@ function info() {
       const button = document.getElementById('customize-btn')
       button.addEventListener('click', async (event) => {
         event.preventDefault();
-        const prevPlantCustomized = { ...plantCustomized };
         const title = document.getElementById('title');
         const container = document.getElementById('plant-form');
         const getForm = await fetch('../../customize.html');
@@ -82,42 +100,70 @@ function info() {
         container.innerHTML = newForm
         title.innerHTML = 'Customize you plant';
         button.innerHTML = 'Check store availability'
+
         const potElements = document.querySelectorAll('input[name="pot"]');
         const colorElements = document.querySelectorAll('input[name="color"]');
         const decorationElements = document.querySelector('input[name="decoration"]');
         const soilElements = document.querySelectorAll('input[name="soil"]');
+        const plantElements = document.querySelectorAll('select[name="plant"]');
+        const extrasElements = document.querySelectorAll('input[name="extras"]');
+
 
         potElements.forEach(element => element.addEventListener('change', updateData));
         colorElements.forEach(element => element.addEventListener('change', updateData));
         decorationElements.addEventListener('change', updateData);
-        soilElements.forEach(element => element.addEventListener('change', updateData));
+        soilElements.forEach(element => element.addEventListener('change', updateSoilData));
+        plantElements.forEach(element => element.addEventListener('change', updatePlantData))
+        // extrasElements.forEach(element => element.addEventListener('change', updateExtrasData));
 
-        // Set the form input values to the previous values obtained before fetching the new form
-        const colorElement = document.querySelector(`input[name="color"][value="${prevPlantCustomized.color}"]`);
-        if (colorElement) {
-          colorElement.checked = true;
-        }
-
-        const potElement = document.querySelector(`input[name="pot"][value="${prevPlantCustomized.pot}"]`);
-        if (potElement) {
-          potElement.checked = true;
-        }
-
-        const decorationElement = document.querySelector(`input[name="decoration"][value="${prevPlantCustomized.decoration}"]`);
-        if (decorationElement) {
-          decorationElement.checked = true;
-        }
-
-        const soilElement = document.querySelector(`input[name="soil"][value="${prevPlantCustomized.soil}"]`);
-        if (soilElement) {
-          soilElement.checked = true;
-        }
-
-        updateData();
-
+        // const newName = document.getElementsByClassName(newName).innerHTML=plantData.newName
       })
     });
   });
 }
+export {
+  info,
+  plantData
+}
 
-export default info;
+
+// WOORRKKKK OJO SRC EN FORM
+// import Observer from "../../patterns/observer.js";
+// import potConfig from "./config.js";
+
+// const observerPot = new Observer();
+
+// let formPotData = {
+//   pot: "",
+//   decoration: "",
+//   color: "",
+// };
+
+// function updateImagePath(formPotData) {
+//   const { color, pot, decoration } = formPotData;
+//   const imagePath = potConfig[color][pot][decoration].imagePath;
+//   return imagePath;
+// }
+
+// observerPot.subscribe(updateImagePath);
+
+// function updateData() {
+//   formPotData.color = document.querySelector('input[name="color"]:checked').value;
+//   formPotData.pot = document.querySelector('input[name="pot"]:checked').value;
+//   formPotData.decoration = document.querySelector('input[name="decoration"]:checked') ? "decorated" : "simple";
+
+//   const newImagePath = updateImagePath(formPotData);
+//   if (newImagePath !== undefined) {
+//     const potImages = Array.from(document.getElementsByClassName('potSrc'));
+
+//     if (newImagePath !== undefined) {
+//       const potImages = Array.from(document.getElementsByClassName('potSrc'));
+
+//       potImages.forEach(img => {
+//         img.src = newImagePath;
+//       });
+//     }
+//   }
+// }
+
+// export default updateData

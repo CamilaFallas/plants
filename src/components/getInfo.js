@@ -41,8 +41,6 @@ function getPlantImageName(plantName) {
       return 'aloe';
     case 'Substitute for Peace Lily':
       return 'peace-lily';
-    default:
-      return 'default';
   }
 }
 
