@@ -1,7 +1,0 @@
-{
-  "devDependencies": {
-    "@testing-library/dom": "^9.3.1",
-    "@testing-library/jest-dom": "^5.17.0",
-    "jest": "^29.6.2"
-  }
-}

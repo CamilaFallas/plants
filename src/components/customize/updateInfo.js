@@ -1,6 +1,6 @@
 import Observer from "../../patterns/observer.js";
 import { potConfig, soilConfig, plantConfig, extrasConfig } from "../../config.js";
-import { plantData } from "../form.js";
+// import { plantData } from "../form.js";
 
 let newName = document.getElementsByClassName('newName');
 let newSoil = document.getElementsByClassName('newSoil');
@@ -48,11 +48,11 @@ function updateData() {
     });
   }
 
-  plantData.potColor = formPotData.color;
-  plantData.potMaterial = formPotData.pot;
-  plantData.potStyle = formPotData.decoration;
+  // plantData.potColor = formPotData.color;
+  // plantData.potMaterial = formPotData.pot;
+  // plantData.potStyle = formPotData.decoration;
 
-  newPot.innerHTML = plantData.potMaterial;
+  // newPot.innerHTML = plantData.potMaterial;
 
 }
 
@@ -75,10 +75,10 @@ observerSoil.subscribe((newSoilType) => {
 
 function updateSoilData() {
   const newSoilType = document.querySelector('input[name="soil"]:checked').value;
-  plantData.soilType = newSoilType;
+  // plantData.soilType = newSoilType;
 
-  plantData.soilType = formSoilData.soil;
-  newSoil.innerHTML = plantData.soilType;
+  // plantData.soilType = formSoilData.soil;
+  // newSoil.innerHTML = plantData.soilType;
 
   observerSoil.notify(newSoilType);
 }
@@ -102,10 +102,10 @@ observerPlant.subscribe((newPlantName) => {
 
 function updatePlantData() {
   const newPlantName = document.querySelector('select[name="plant"]').value;
-  plantData.name = newPlantName;
+  // plantData.name = newPlantName;
 
-  plantData.name = formPlantData.plant;
-  newName.innerHTML = plantData.name;
+  // plantData.name = formPlantData.plant;
+  // newName.innerHTML = plantData.name;
 
   observerPlant.notify(newPlantName);
 }

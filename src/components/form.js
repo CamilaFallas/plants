@@ -7,14 +7,6 @@ const plantForm = document.getElementById('plantForm');
 const recommendationDiv = document.getElementById('recommendation');
 const plantResultDiv = document.getElementById('plantResult');
 const clearButton = document.getElementById('clearButton');
-let plantData = {
-  name: '',
-  potMaterial: '',
-  potColor: '',
-  soilType: '',
-  potStyle: '',
-  extrasList: []
-};
 
 function info() {
   document.addEventListener('DOMContentLoaded', () => {
@@ -76,15 +68,15 @@ function info() {
     <buttom class="btn btn-bg" class="btn btn-bg" id="customize-btn">Customize</buttom>
     <a href="/store.html">gggggggggggggg</a>
     `;
-      plantData = {
-        name: plant.name,
-        potMaterial: plant.potMaterial,
-        potColor: '',
-        soilType: plant.soilType,
-        potStyle: plant.potStyle,
-        extrasList: extrasList
-      };
-      console.log(plantData)
+      // plantData = {
+      //   name: plant.name,
+      //   potMaterial: plant.potMaterial,
+      //   potColor: '',
+      //   soilType: plant.soilType,
+      //   potStyle: plant.potStyle,
+      //   extrasList: extrasList
+      // };
+      // console.log(plantData)
       clearButton.addEventListener('click', () => {
         plantForm.reset();
         recommendationDiv.style.display = 'none';
@@ -123,47 +115,7 @@ function info() {
 }
 export {
   info,
-  plantData
+  // plantData
 }
 
 
-// WOORRKKKK OJO SRC EN FORM
-// import Observer from "../../patterns/observer.js";
-// import potConfig from "./config.js";
-
-// const observerPot = new Observer();
-
-// let formPotData = {
-//   pot: "",
-//   decoration: "",
-//   color: "",
-// };
-
-// function updateImagePath(formPotData) {
-//   const { color, pot, decoration } = formPotData;
-//   const imagePath = potConfig[color][pot][decoration].imagePath;
-//   return imagePath;
-// }
-
-// observerPot.subscribe(updateImagePath);
-
-// function updateData() {
-//   formPotData.color = document.querySelector('input[name="color"]:checked').value;
-//   formPotData.pot = document.querySelector('input[name="pot"]:checked').value;
-//   formPotData.decoration = document.querySelector('input[name="decoration"]:checked') ? "decorated" : "simple";
-
-//   const newImagePath = updateImagePath(formPotData);
-//   if (newImagePath !== undefined) {
-//     const potImages = Array.from(document.getElementsByClassName('potSrc'));
-
-//     if (newImagePath !== undefined) {
-//       const potImages = Array.from(document.getElementsByClassName('potSrc'));
-
-//       potImages.forEach(img => {
-//         img.src = newImagePath;
-//       });
-//     }
-//   }
-// }
-
-// export default updateData

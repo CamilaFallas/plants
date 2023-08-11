@@ -1,5 +1,13 @@
 const path = '../../styles/images/';
 
+const plantData = {
+  name: '',
+  potMaterial: '',
+  potColor: '',
+  soilType: '',
+  potStyle: '',
+  extrasList: []
+};
 const potConfig = {
   blue: {
     name: 'Blue',

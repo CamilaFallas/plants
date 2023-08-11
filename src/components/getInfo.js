@@ -44,7 +44,7 @@ function getPlantImageName(plantName) {
   }
 }
 
-function determinePlantName(placement, sunlight, pets, watering) {
+function determinePlantName(placement, pets, watering) {
   if (placement === 'low-light-plant') {
     if (pets === 'yes') {
       return 'Fern';
