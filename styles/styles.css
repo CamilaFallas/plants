@@ -16,8 +16,8 @@ label {
   display: inline;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
+input[type='radio'],
+input[type='checkbox'] {
   margin-right: 5px;
 }
 
@@ -94,7 +94,7 @@ p {
 }
 
 .card {
-  background-color: #7A5CFA;
+  background-color: #7a5cfa;
   border-radius: 10px;
   width: 400px;
   text-align: center;
@@ -120,7 +120,7 @@ p {
 .card_img-position {
   position: absolute;
   top: 0%;
-	left: 15%;
+  left: 15%;
 }
 
 .card-info {
@@ -128,7 +128,7 @@ p {
   justify-content: space-evenly;
 }
 
-.card--font{
+.card--font {
   text-align: left;
 }
 

@@ -14,5 +14,3 @@
 //     colorOptions.style.display = "block";
 //   }
 // });
-
-

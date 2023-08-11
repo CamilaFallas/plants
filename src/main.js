@@ -1,2 +1,2 @@
-import { info } from './components/form.js'
+import { info } from './components/form.js';
 info();

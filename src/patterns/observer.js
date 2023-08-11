@@ -8,9 +8,8 @@ class Observer {
   }
 
   notify(data) {
-    this.observers.forEach(observer => observer(data));
+    this.observers.forEach((observer) => observer(data));
   }
 }
 
 export default Observer;
-

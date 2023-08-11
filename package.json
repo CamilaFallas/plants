@@ -257,8 +257,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "eslint",
-    "dev": "vite", 
-    "build": "vite build", 
+    "prettier": "prettier",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "repository": {

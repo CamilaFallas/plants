@@ -1,63 +1,79 @@
-import Observer from "../../patterns/observer.js";
-import { potConfig, soilConfig, plantConfig, extrasConfig } from "../../config.js";
-// import { plantData } from "../form.js";
+import Observer from '../../patterns/observer.js';
+import {
+  potConfig,
+  soilConfig,
+  plantConfig,
+  extrasConfig,
+} from '../../config.js';
+// eslint-disable-next-line import/no-cycle
+import { plantData } from '../form.js';
 
-let newName = document.getElementsByClassName('newName');
-let newSoil = document.getElementsByClassName('newSoil');
-let newPot = document.getElementsByClassName('newPot');
-let newExtras = document.getElementsByClassName('newExtras');
+const newName = document.getElementsByClassName('newName');
+const newSoil = document.getElementsByClassName('newSoil');
+const newPot = document.getElementsByClassName('newPot');
+// const newExtras = document.getElementsByClassName('newExtras');
 
 const observerPot = new Observer();
 const observerSoil = new Observer();
 const observerPlant = new Observer();
-// const observerExtras = new Observer();
+const observerExtras = new Observer();
 
-let formPotData = {
-  pot: "",
-  decoration: "",
-  color: "",
+const formPotData = {
+  pot: '',
+  decoration: '',
+  color: '',
 };
 
-let formSoilData = {
-  soil: "",
+const formSoilData = {
+  soil: '',
 };
 
-let formPlantData = {
-  plant: "",
+const formPlantData = {
+  plant: '',
 };
 
-function updateImagePath(formPotData) {
+const formExtrasData = {
+  extras: [],
+};
+
+function updateImagePath() {
   const { color, pot, decoration } = formPotData;
-  const imagePath = potConfig[color][pot][decoration].imagePath;
+  const { imagePath } = potConfig[color][pot][decoration];
   return imagePath;
 }
 
 observerPot.subscribe(updateImagePath);
 
 function updateData() {
-  formPotData.color = document.querySelector('input[name="color"]:checked').value;
+  formPotData.color = document.querySelector(
+    'input[name="color"]:checked',
+  ).value;
   formPotData.pot = document.querySelector('input[name="pot"]:checked').value;
-  formPotData.decoration = document.querySelector('input[name="decoration"]:checked') ? "decorated" : "simple";
+  formPotData.decoration = document.querySelector(
+    'input[name="decoration"]:checked',
+  )
+    ? 'decorated'
+    : 'simple';
 
   const newImagePath = updateImagePath(formPotData);
   if (newImagePath !== undefined) {
     const potImages = Array.from(document.getElementsByClassName('potSrc'));
 
-    potImages.forEach(img => {
+    potImages.forEach((img) => {
+      // eslint-disable-next-line no-param-reassign
       img.src = newImagePath;
     });
   }
 
-  // plantData.potColor = formPotData.color;
-  // plantData.potMaterial = formPotData.pot;
-  // plantData.potStyle = formPotData.decoration;
+  plantData.potColor = formPotData.color;
+  plantData.potMaterial = formPotData.pot;
+  plantData.potStyle = formPotData.decoration;
 
-  // newPot.innerHTML = plantData.potMaterial;
-
+  newPot.innerHTML = plantData.potMaterial;
 }
 
 function updateSoilImagePath(soilType) {
-  const imagePath = soilConfig[soilType].imagePath;
+  const { imagePath } = soilConfig[soilType];
   return imagePath;
 }
 
@@ -67,24 +83,27 @@ observerSoil.subscribe((newSoilType) => {
   if (newSoilPath !== undefined) {
     const soilImages = Array.from(document.getElementsByClassName('soilSrc'));
 
-    soilImages.forEach(img => {
+    soilImages.forEach((img) => {
+      // eslint-disable-next-line no-param-reassign
       img.src = newSoilPath;
     });
   }
 });
 
 function updateSoilData() {
-  const newSoilType = document.querySelector('input[name="soil"]:checked').value;
-  // plantData.soilType = newSoilType;
+  const newSoilType = document.querySelector(
+    'input[name="soil"]:checked',
+  ).value;
+  plantData.soilType = newSoilType;
 
-  // plantData.soilType = formSoilData.soil;
-  // newSoil.innerHTML = plantData.soilType;
+  plantData.soilType = formSoilData.soil;
+  newSoil.innerHTML = plantData.soilType;
 
   observerSoil.notify(newSoilType);
 }
 
 function updatePlantImagePath(name) {
-  const imagePath = plantConfig[name].imagePath;
+  const { imagePath } = plantConfig[name];
   return imagePath;
 }
 
@@ -94,7 +113,8 @@ observerPlant.subscribe((newPlantName) => {
   if (newPlantPath !== undefined) {
     const plantImages = Array.from(document.getElementsByClassName('plantSrc'));
 
-    plantImages.forEach(img => {
+    plantImages.forEach((img) => {
+      // eslint-disable-next-line no-param-reassign
       img.src = newPlantPath;
     });
   }
@@ -102,95 +122,35 @@ observerPlant.subscribe((newPlantName) => {
 
 function updatePlantData() {
   const newPlantName = document.querySelector('select[name="plant"]').value;
-  // plantData.name = newPlantName;
+  plantData.name = newPlantName;
 
-  // plantData.name = formPlantData.plant;
-  // newName.innerHTML = plantData.name;
+  plantData.name = formPlantData.plant;
+  newName.innerHTML = plantData.name;
 
   observerPlant.notify(newPlantName);
 }
 
-// function updateExtrasImagePath(formExtrasData) {
-//   let imagePath = "";
-//   const { extras } = formExtrasData;
-
-//   extras.forEach(extra => {
-//     if (extrasConfig[extra]) {
-//       imagePath += extrasConfig[extra].imagePath;
-//     }
-//   });
-
-//   return imagePath;
-// }
-
-// observerExtras.subscribe(updateExtrasImagePath);
-
-
-// function updateExtrasData() {
-//   formExtrasData.extras = Array.from(document.querySelectorAll('input[name="extras"]:checked')).map(checkbox => checkbox.value);
-
-//   const newExtrasPath = updateExtrasImagePath(formExtrasData);
-//   if (newExtrasPath !== undefined) {
-//     const extrasImages = Array.from(document.getElementsByClassName('extrasSrc'));
-
-//     extrasImages.forEach(img => {
-//       img.src = newExtrasPath;
-//     });
-//   }
-// }
-
-
-
-
-export {
-  updateData,
-  updateSoilData,
-  updatePlantData,
-  // updateExtrasData
+function updateExtraImagePath(extra) {
+  return extrasConfig[extra] ? extrasConfig[extra].imagePath : '';
 }
 
+observerExtras.subscribe((newExtrasList) => {
+  const extrasImages = Array.from(document.getElementsByClassName('extrasSrc'));
 
+  newExtrasList.forEach((extra, index) => {
+    const extraPath = updateExtraImagePath(extra);
+    if (extraPath && extrasImages[index]) {
+      extrasImages[index].src = extraPath;
+    }
+  });
+});
 
-// WOORRKKKK OJO SRC EN FORM
-// import Observer from "../../patterns/observer.js";
-// import potConfig from "./config.js";
+function updateExtrasData() {
+  formExtrasData.extras = Array.from(
+    document.querySelectorAll('input[name="extras"]:checked'),
+  ).map((checkbox) => checkbox.value);
 
-// const observerPot = new Observer();
+  observerExtras.notify(formExtrasData.extras);
+}
 
-// let formPotData = {
-//   pot: "",
-//   decoration: "",
-//   color: "",
-// };
-
-// function updateImagePath(formPotData) {
-//   const { color, pot, decoration } = formPotData;
-//   const imagePath = potConfig[color][pot][decoration].imagePath;
-//   return imagePath;
-// }
-
-// observerPot.subscribe(updateImagePath);
-
-// function updateData() {
-//   formPotData.color = document.querySelector('input[name="color"]:checked').value;
-//   formPotData.pot = document.querySelector('input[name="pot"]:checked').value;
-//   formPotData.decoration = document.querySelector('input[name="decoration"]:checked') ? "decorated" : "simple";
-
-//   const newImagePath = updateImagePath(formPotData);
-//   if (newImagePath !== undefined) {
-//     const potImages = Array.from(document.getElementsByClassName('potSrc'));
-
-//     if (newImagePath !== undefined) {
-//       const potImages = Array.from(document.getElementsByClassName('potSrc'));
-
-//       potImages.forEach(img => {
-//         img.src = newImagePath;
-//       });
-//     }
-//   }
-// }
-
-// export default updateData
-
-
-
+export { updateData, updateSoilData, updatePlantData, updateExtrasData };
