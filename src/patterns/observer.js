@@ -7,10 +7,6 @@ class Observer {
     this.observers.push(fn);
   }
 
-  unsubscribe(fn) {
-    this.observers = this.observers.filter(obs => obs !== fn);
-  }
-
   notify(data) {
     this.observers.forEach(observer => observer(data));
   }
