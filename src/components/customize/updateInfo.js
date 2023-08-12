@@ -11,7 +11,6 @@ import { plantData } from '../form.js';
 const newName = document.getElementsByClassName('newName');
 const newSoil = document.getElementsByClassName('newSoil');
 const newPot = document.getElementsByClassName('newPot');
-// const newExtras = document.getElementsByClassName('newExtras');
 
 const observerPot = new Observer();
 const observerSoil = new Observer();

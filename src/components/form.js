@@ -1,5 +1,4 @@
 import PlantBuilder from '../patterns/builder.js';
-// import { updatePotData, updateSoilData, updatedPlantData, updateExtrasData } from './customize/updateInfo.js';
 // eslint-disable-next-line import/no-cycle
 import {
   updateSoilData,
@@ -106,7 +105,9 @@ function info() {
         </div>
       </div>
     </div>
-    <buttom class="btn btn-bg" class="btn btn-bg" id="customize-btn">Customize</buttom>
+    <div class="btn-card">
+      <buttom class="btn btn-bg" class="btn btn-bg" id="customize-btn">Customize</buttom>
+    </div>
     `;
       // plantData = {
       //   name: plant.name,
